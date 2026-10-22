@@ -6,7 +6,7 @@ Uma maneira de identificar, separa e redirecionar as espécies dos materiais dis
 
 
 
-Mesmo que isoladamente possa parecer simples ou insignificante, um pequena semente também pode germinar em uma grande árvore com o passar o tempo, e produzir frutos; Ou seja, os rendimentos apresentados podem ser o retorno econômico (através da reciclagem), um lugar mais bonito, e uma vila mais orgnaizada para viver com mais dignidade!
+Mesmo que isoladamente possa parecer simples ou insignificante, um pequena semente também pode germinar em uma grande árvore com o passar o tempo, e produzir frutos; Ou seja, os rendimentos apresentados podem ser o retorno econômico (através da reciclagem), um lugar mais bonito, e uma vila mais organizada para viver com mais dignidade!
 
 
 <br>
@@ -15,7 +15,7 @@ Mesmo que isoladamente possa parecer simples ou insignificante, um pequena semen
 
  -  Acompanha a imagem a seguir [ AZUL, VERMELHO, AMARELO, VERDE E MARROM ]: 
 
-![latas de lixo](cores.png)
+![latas de lixo](./assets/cores.png)
 
 
  <br><br><br>
@@ -24,4 +24,4 @@ Mesmo que isoladamente possa parecer simples ou insignificante, um pequena semen
  ### [ SLIDE 2 ]
  # Vídeo Explicativo
 
-<video src="./recic-virtual-sipat.mp4" controls width="600"></video>
+<video src="./assets/recic-virtual-sipat.mp4" type="video/mp4" controls width="600"></video>
