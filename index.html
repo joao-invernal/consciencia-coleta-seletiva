@@ -172,6 +172,49 @@
         width: min(34vw, 33rem);
       }
 
+      .collector-slide {
+        grid-template-columns: minmax(16rem, .78fr) minmax(31rem, 1.22fr);
+      }
+
+      .collector-slide .slide-title {
+        font-size: clamp(2.05rem, 3.25vw, 3.8rem);
+        line-height: 1.06;
+      }
+
+      .collector-copy { position: relative; z-index: 1; }
+      .collector-copy .body-copy { margin-top: 2rem; max-width: 30rem; }
+
+      .color-visual {
+        align-self: stretch;
+        background: #fffefa;
+        border: 1px solid rgba(18, 49, 47, .1);
+        box-shadow: 0 1.3rem 4rem rgba(18, 49, 47, .1);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0;
+        min-height: 0;
+        padding: clamp(1.3rem, 3vw, 3rem);
+        position: relative;
+      }
+
+      .color-visual figcaption {
+        color: var(--teal);
+        font: 500 .72rem/1.5 "DM Mono", monospace;
+        letter-spacing: .08em;
+        margin-bottom: clamp(.8rem, 2vw, 1.5rem);
+        text-transform: uppercase;
+      }
+
+      .color-visual img {
+        display: block;
+        height: auto;
+        max-height: 62svh;
+        object-fit: contain;
+        object-position: center;
+        width: 100%;
+      }
+
       .slide-title {
         font: 800 clamp(2.25rem, 4vw, 4.7rem)/1.02 Manrope, Arial, sans-serif;
         letter-spacing: -.07em;
@@ -286,6 +329,10 @@
         .cover { padding-bottom: 5.5rem; }
         .brand-mark { display: none; }
         .content-slide { align-content: center; padding-bottom: 5rem; }
+        .collector-slide { grid-template-columns: 1fr; }
+        .collector-copy .body-copy { margin-top: 1.2rem; }
+        .color-visual { min-height: auto; padding: 1rem; }
+        .color-visual img { max-height: 35svh; }
         .slide-title { max-width: none; }
         .color-card { padding: 1rem; }
         .color-card img { max-height: 29svh; }
@@ -308,21 +355,20 @@
         <div class="brand-mark"><img src="assets/logo-CS.png" alt="Logo CS" /></div>
       </section>
 
-      <section class="slide content-slide" aria-roledescription="slide" aria-label="Slide 2 de 5: O que é coleta seletiva">
-        <div>
+      <section class="slide content-slide collector-slide" aria-roledescription="slide" aria-label="Slide 2 de 5: O que é coleta seletiva">
+        <div class="collector-copy">
           <p class="eyebrow">Abertura · 01</p>
           <h2 class="slide-title">O que é coleta seletiva?</h2>
           <p class="slide-count">01 / ENTENDER</p>
+          <div class="body-copy">
+            <p>Uma maneira de identificar, separar e redirecionar os materiais descartados, de forma que possa promover um ambiente mais saudável para a sociedade.</p>
+            <p>Mesmo que isoladamente possa parecer simples ou insignificante, um pequena semente também pode germinar em uma grande árvore com o passar o tempo, e produzir frutos; Ou seja, os rendimentos apresentados podem ser o retorno econômico (através da reciclagem), um lugar mais bonito, e uma vila mais organizada para viver com mais dignidade!</p>
+          </div>
         </div>
-        <div class="body-copy">
-          <p>Uma maneira de identificar, separar e redirecionar os materiais descartados, de forma que possa promover um ambiente mais saudável para a sociedade.</p>
-          <p>Mesmo que isoladamente possa parecer simples ou insignificante, uma pequena semente também pode germinar em uma grande árvore com o passar do tempo e produzir frutos. Ou seja: os resultados podem ser retorno econômico — através da reciclagem —, um lugar mais bonito e uma vila mais organizada para viver com mais dignidade.</p>
-          <article class="color-card">
-            <h2>As cores comuns encontradas</h2>
-            <p>Acompanhe os coletores de <strong>azul, vermelho, amarelo, verde e marrom</strong>.</p>
+        <figure class="color-visual">
+          <figcaption>As cores comuns encontradas · azul, vermelho, amarelo, verde e marrom</figcaption>
             <img src="assets/cores.png" alt="Coletores para materiais recicláveis nas cores azul, vermelho, amarelo, verde e marrom" />
-          </article>
-        </div>
+        </figure>
       </section>
 
       <section class="slide video-slide" aria-roledescription="slide" aria-label="Slide 3 de 5: Vídeo explicativo">
