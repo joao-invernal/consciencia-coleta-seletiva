@@ -13,7 +13,7 @@ Mesmo que isoladamente possa parecer simples ou insignificante, um pequena semen
 
  ## As Cores Comuns Encontradas
 
- -  Acompanha a imagem a seguir [ AZUL, VERMELHO, AMARELO, VERDE E MARROM ]: 
+ - Acompanha a imagem a seguir [ AZUL, VERMELHO, AMARELO, VERDE E MARROM ]: 
 
 ![latas de lixo](./assets/cores.png)
 

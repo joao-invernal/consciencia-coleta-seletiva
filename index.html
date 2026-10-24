@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0d4d4b" />
+    <title>Consciência Coleta Seletiva</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap");
+
+      :root {
+        --ink: #12312f;
+        --teal: #0d625e;
+        --teal-dark: #073e3b;
+        --mint: #def2e9;
+        --cream: #f8f5ed;
+        --sun: #e8c76c;
+        --line: rgba(18, 49, 47, 0.16);
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body { margin: 0; min-height: 100%; background: #092f2d; }
+
+      body {
+        color: var(--ink);
+        font-family: Manrope, Arial, sans-serif;
+        overflow: hidden;
+      }
+
+      button { font: inherit; }
+
+      .deck {
+        height: 100svh;
+        min-height: 620px;
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+      }
+
+      .slide {
+        --slide-bg: var(--cream);
+        background: var(--slide-bg);
+        height: 100%;
+        inset: 0;
+        opacity: 0;
+        padding: clamp(2rem, 5vw, 5.5rem) clamp(2rem, 8vw, 9rem);
+        pointer-events: none;
+        position: absolute;
+        transform: translateX(2.5rem);
+        transition: opacity .48s ease, transform .58s cubic-bezier(.2,.8,.2,1);
+        visibility: hidden;
+      }
+
+      .slide.active {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(0);
+        visibility: visible;
+      }
+
+      .slide.is-leaving { transform: translateX(-2.5rem); }
+
+      .slide::before, .slide::after {
+        content: "";
+        pointer-events: none;
+        position: absolute;
+      }
+
+      .eyebrow {
+        align-items: center;
+        color: var(--teal);
+        display: flex;
+        font: 500 .7rem/1 "DM Mono", monospace;
+        gap: .75rem;
+        letter-spacing: .12em;
+        margin: 0 0 1.6rem;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before { background: currentColor; content: ""; height: 1px; width: 2.5rem; }
+
+      .cover {
+        --slide-bg: #0b4c48;
+        color: #f8f5ed;
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(15rem, .85fr);
+        gap: clamp(3rem, 9vw, 10rem);
+        align-items: center;
+      }
+
+      .cover::before {
+        border: 1px solid rgba(222, 242, 233, .16);
+        border-radius: 50%;
+        height: min(70vw, 57rem);
+        right: -17rem;
+        top: -28rem;
+        width: min(70vw, 57rem);
+      }
+
+      .cover::after {
+        background: #e8c76c;
+        border-radius: 50%;
+        bottom: 13%;
+        height: .7rem;
+        left: 8%;
+        width: .7rem;
+      }
+
+      .cover .eyebrow { color: #b7ded1; position: relative; z-index: 1; }
+
+      .cover h1 {
+        font: 600 clamp(3.6rem, 7.6vw, 8.8rem)/.91 "Playfair Display", Georgia, serif;
+        letter-spacing: -.065em;
+        margin: 0;
+        max-width: 9ch;
+        position: relative;
+        z-index: 1;
+      }
+
+      .cover h1 em { color: var(--sun); font-weight: 600; }
+
+      .cover .subtitle {
+        border-left: 1px solid rgba(222, 242, 233, .56);
+        color: #d6e8df;
+        font-size: clamp(.9rem, 1.4vw, 1.15rem);
+        line-height: 1.75;
+        margin: 2.2rem 0 0;
+        max-width: 34rem;
+        padding-left: 1.3rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .brand-mark {
+        align-items: center;
+        background: #f7f4eb;
+        border-radius: 50%;
+        box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, .16);
+        display: flex;
+        height: clamp(11rem, 21vw, 19rem);
+        justify-content: center;
+        justify-self: center;
+        position: relative;
+        width: clamp(11rem, 21vw, 19rem);
+        z-index: 1;
+      }
+
+      .brand-mark::before {
+        border: 1px solid rgba(232, 199, 108, .65);
+        border-radius: 50%;
+        content: "";
+        inset: .75rem;
+        position: absolute;
+      }
+
+      .brand-mark img { height: 68%; object-fit: contain; position: relative; width: 68%; }
+
+      .content-slide {
+        display: grid;
+        grid-template-columns: minmax(16rem, .85fr) minmax(28rem, 1.15fr);
+        gap: clamp(3rem, 7vw, 8rem);
+        align-items: center;
+      }
+
+      .content-slide::before {
+        background: var(--mint);
+        border-radius: 50%;
+        height: min(34vw, 33rem);
+        left: -14rem;
+        top: -13rem;
+        width: min(34vw, 33rem);
+      }
+
+      .slide-title {
+        font: 800 clamp(2.25rem, 4vw, 4.7rem)/1.02 Manrope, Arial, sans-serif;
+        letter-spacing: -.07em;
+        margin: 0;
+        max-width: 8ch;
+      }
+
+      .slide-count {
+        color: var(--teal);
+        font: 500 .72rem/1 "DM Mono", monospace;
+        letter-spacing: .1em;
+        margin-top: 2rem;
+      }
+
+      .body-copy { font-size: clamp(.88rem, 1.25vw, 1.06rem); line-height: 1.8; }
+      .body-copy p { margin: 0 0 1.05rem; }
+      .body-copy strong { color: var(--teal); }
+
+      .color-card {
+        background: #fffefa;
+        border: 1px solid rgba(18, 49, 47, .1);
+        box-shadow: 0 1.3rem 4rem rgba(18, 49, 47, .1);
+        padding: clamp(1.3rem, 3vw, 2.8rem);
+        position: relative;
+      }
+
+      .color-card h2 { color: var(--teal); font-size: .78rem; letter-spacing: .12em; margin: 0 0 1.2rem; text-transform: uppercase; }
+      .color-card p { font-size: .83rem; line-height: 1.6; margin: 0 0 1.15rem; }
+      .color-card img { display: block; max-height: 44svh; object-fit: contain; object-position: center; width: 100%; }
+
+      .video-slide {
+        --slide-bg: #e7f3ee;
+        display: grid;
+        grid-template-columns: minmax(13rem, .38fr) minmax(38rem, 1.62fr);
+        gap: clamp(2rem, 4vw, 5rem);
+        align-items: center;
+      }
+
+      .video-slide::after {
+        border: 1px solid rgba(13, 98, 94, .13);
+        border-radius: 50%;
+        bottom: -21rem;
+        height: 42rem;
+        right: -12rem;
+        width: 42rem;
+      }
+
+      .video-panel { position: relative; z-index: 1; }
+      .video-frame { background: #093f3d; box-shadow: 0 1.7rem 4rem rgba(9, 63, 61, .23); padding: .65rem; }
+      .video-frame video { aspect-ratio: 16 / 9; display: block; max-height: 73svh; object-fit: contain; width: 100%; }
+      .video-caption { color: var(--teal); font: 500 .72rem/1.45 "DM Mono", monospace; letter-spacing: .06em; margin: 1rem 0 0; text-transform: uppercase; }
+
+      .question, .thanks {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .question { --slide-bg: #0b6763; color: var(--cream); }
+      .question::before { border: 1px solid rgba(223, 244, 235, .24); border-radius: 50%; height: min(62vw, 53rem); width: min(62vw, 53rem); }
+      .question::after { background: var(--sun); border-radius: 50%; height: 1rem; left: 15%; top: 22%; width: 1rem; }
+      .question .eyebrow { color: #bce0d2; justify-content: center; }
+      .question h2 { font: 600 clamp(5.8rem, 15vw, 16rem)/.85 "Playfair Display", Georgia, serif; letter-spacing: -.08em; margin: 0; position: relative; z-index: 1; }
+      .question h2 span { color: var(--sun); font-style: italic; }
+      .question p { color: #cfe8dc; font-size: clamp(.9rem, 1.4vw, 1.1rem); margin: 2.2rem auto 0; max-width: 31rem; position: relative; z-index: 1; }
+
+      .thanks { --slide-bg: #f7f3e9; }
+      .thanks::before { background: var(--mint); border-radius: 50%; height: min(53vw, 44rem); left: -20rem; top: -17rem; width: min(53vw, 44rem); }
+      .thanks::after { background: var(--teal); border-radius: 50%; bottom: 12%; height: .75rem; right: 13%; width: .75rem; }
+      .thanks .eyebrow { justify-content: center; position: relative; z-index: 1; }
+      .thanks h2 { font: 600 clamp(4.3rem, 11vw, 11.5rem)/.88 "Playfair Display", Georgia, serif; letter-spacing: -.075em; margin: 0; position: relative; z-index: 1; }
+      .thanks h2 em { color: var(--teal); font-weight: 600; }
+      .thanks p { font-size: clamp(.9rem, 1.4vw, 1.12rem); line-height: 1.65; margin: 2rem auto 0; max-width: 30rem; position: relative; z-index: 1; }
+
+      .controls {
+        align-items: center;
+        bottom: clamp(1.2rem, 2.4vw, 2.5rem);
+        display: flex;
+        gap: .55rem;
+        position: fixed;
+        right: clamp(1.2rem, 3.5vw, 4rem);
+        z-index: 4;
+      }
+
+      .nav-button {
+        align-items: center;
+        backdrop-filter: blur(8px);
+        background: rgba(248, 245, 237, .86);
+        border: 1px solid rgba(18, 49, 47, .17);
+        border-radius: 50%;
+        color: var(--ink);
+        cursor: pointer;
+        display: flex;
+        height: 2.8rem;
+        justify-content: center;
+        transition: background .2s ease, transform .2s ease;
+        width: 2.8rem;
+      }
+      .nav-button:hover { background: #fff; transform: translateY(-2px); }
+      .nav-button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
+      .nav-button svg { height: 1rem; width: 1rem; }
+
+      .progress { background: rgba(248, 245, 237, .5); bottom: 0; height: 4px; left: 0; position: fixed; width: 100%; z-index: 4; }
+      .progress > span { background: var(--sun); display: block; height: 100%; transition: width .4s ease; width: 20%; }
+      .pagination { bottom: clamp(1.85rem, 3vw, 2.8rem); color: rgba(248, 245, 237, .72); font: 500 .68rem/1 "DM Mono", monospace; left: clamp(1.3rem, 3.5vw, 4rem); letter-spacing: .08em; position: fixed; z-index: 4; }
+      .slide:not(.cover):not(.question) ~ .pagination { color: var(--teal); }
+
+      @media (max-width: 760px), (max-height: 650px) {
+        .deck { min-height: 0; }
+        .cover, .content-slide, .video-slide { grid-template-columns: 1fr; gap: 1.5rem; overflow-y: auto; }
+        .cover { padding-bottom: 5.5rem; }
+        .brand-mark { display: none; }
+        .content-slide { align-content: center; padding-bottom: 5rem; }
+        .slide-title { max-width: none; }
+        .color-card { padding: 1rem; }
+        .color-card img { max-height: 29svh; }
+        .video-slide { align-content: center; padding-bottom: 5.5rem; }
+        .video-frame video { max-height: 42svh; }
+        .question h2 { font-size: clamp(4.2rem, 22vw, 7rem); }
+      }
+
+      @media (prefers-reduced-motion: reduce) { .slide, .progress > span { transition: none; } }
+    </style>
+  </head>
+  <body>
+    <main class="deck" aria-label="Apresentação sobre consciência e coleta seletiva">
+      <section class="slide cover active" aria-roledescription="slide" aria-label="Slide 1 de 5: Capa">
+        <div>
+          <p class="eyebrow">Tema · Meio Ambiente</p>
+          <h1>Consciência <em>Coleta</em> Seletiva</h1>
+          <p class="subtitle">Estudantes em Faculdade de Tecnologia apresentam a iniciativa.</p>
+        </div>
+        <div class="brand-mark"><img src="assets/logo-CS.png" alt="Logo CS" /></div>
+      </section>
+
+      <section class="slide content-slide" aria-roledescription="slide" aria-label="Slide 2 de 5: O que é coleta seletiva">
+        <div>
+          <p class="eyebrow">Abertura · 01</p>
+          <h2 class="slide-title">O que é coleta seletiva?</h2>
+          <p class="slide-count">01 / ENTENDER</p>
+        </div>
+        <div class="body-copy">
+          <p>Uma maneira de identificar, separar e redirecionar os materiais descartados, de forma que possa promover um ambiente mais saudável para a sociedade.</p>
+          <p>Mesmo que isoladamente possa parecer simples ou insignificante, uma pequena semente também pode germinar em uma grande árvore com o passar do tempo e produzir frutos. Ou seja: os resultados podem ser retorno econômico — através da reciclagem —, um lugar mais bonito e uma vila mais organizada para viver com mais dignidade.</p>
+          <article class="color-card">
+            <h2>As cores comuns encontradas</h2>
+            <p>Acompanhe os coletores de <strong>azul, vermelho, amarelo, verde e marrom</strong>.</p>
+            <img src="assets/cores.png" alt="Coletores para materiais recicláveis nas cores azul, vermelho, amarelo, verde e marrom" />
+          </article>
+        </div>
+      </section>
+
+      <section class="slide video-slide" aria-roledescription="slide" aria-label="Slide 3 de 5: Vídeo explicativo">
+        <div>
+          <p class="eyebrow">Abertura · 02</p>
+          <h2 class="slide-title">Vídeo explicativo</h2>
+          <p class="body-copy">Assista e descubra como pequenas atitudes tornam o descarte mais consciente.</p>
+          <p class="slide-count">02 / ASSISTIR</p>
+        </div>
+        <div class="video-panel">
+          <div class="video-frame">
+            <video controls preload="metadata" aria-label="Vídeo explicativo sobre coleta seletiva">
+              <source src="assets/recic-virtual-sipat.mp4" type="video/mp4" />
+              Seu navegador não suporta a reprodução deste vídeo.
+            </video>
+          </div>
+          <p class="video-caption">Coleta seletiva · reciclagem e responsabilidade</p>
+        </div>
+      </section>
+
+      <section class="slide question" aria-roledescription="slide" aria-label="Slide 4 de 5: Dúvidas">
+        <div>
+          <p class="eyebrow">Momento de conversa</p>
+          <h2><span>Dúvidas?</span></h2>
+          <p>Este é o momento para trocar ideias, compartilhar experiências e levar a coleta seletiva para mais perto da nossa rotina.</p>
+        </div>
+      </section>
+
+      <section class="slide thanks" aria-roledescription="slide" aria-label="Slide 5 de 5: Agradecimento">
+        <div>
+          <p class="eyebrow">Consciência que transforma</p>
+          <h2>Muito <em>obrigado.</em></h2>
+          <p>Cada escolha no descarte pode ajudar a construir um ambiente mais saudável, bonito e digno para todos.</p>
+        </div>
+      </section>
+    </main>
+
+    <nav class="controls" aria-label="Navegação da apresentação">
+      <button class="nav-button" id="previous" type="button" aria-label="Slide anterior">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" /></svg>
+      </button>
+      <button class="nav-button" id="next" type="button" aria-label="Próximo slide">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" /></svg>
+      </button>
+    </nav>
+    <div class="pagination" aria-live="polite"><span id="current-slide">01</span> — 05</div>
+    <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+
+    <script>
+      (() => {
+        const slides = [...document.querySelectorAll('.slide')];
+        const previous = document.querySelector('#previous');
+        const next = document.querySelector('#next');
+        const counter = document.querySelector('#current-slide');
+        const progress = document.querySelector('#progress-bar');
+        let current = 0;
+
+        const showSlide = (target) => {
+          const nextIndex = (target + slides.length) % slides.length;
+          const oldSlide = slides[current];
+          const newSlide = slides[nextIndex];
+          if (nextIndex === current) return;
+
+          oldSlide.classList.remove('active');
+          oldSlide.classList.add('is-leaving');
+          newSlide.classList.remove('is-leaving');
+          newSlide.classList.add('active');
+          window.setTimeout(() => oldSlide.classList.remove('is-leaving'), 600);
+          current = nextIndex;
+          counter.textContent = String(current + 1).padStart(2, '0');
+          progress.style.width = `${((current + 1) / slides.length) * 100}%`;
+          document.title = `${current + 1}. Consciência Coleta Seletiva`;
+        };
+
+        previous.addEventListener('click', () => showSlide(current - 1));
+        next.addEventListener('click', () => showSlide(current + 1));
+        document.addEventListener('keydown', (event) => {
+          if (event.target.closest('video')) return;
+          if (['ArrowRight', 'ArrowDown', 'PageDown', ' '].includes(event.key)) { event.preventDefault(); showSlide(current + 1); }
+          if (['ArrowLeft', 'ArrowUp', 'PageUp'].includes(event.key)) { event.preventDefault(); showSlide(current - 1); }
+          if (event.key === 'Home') { event.preventDefault(); showSlide(0); }
+          if (event.key === 'End') { event.preventDefault(); showSlide(slides.length - 1); }
+        });
+
+        let touchStart = null;
+        document.addEventListener('touchstart', (event) => { touchStart = event.changedTouches[0].screenX; }, { passive: true });
+        document.addEventListener('touchend', (event) => {
+          if (touchStart === null) return;
+          const movement = event.changedTouches[0].screenX - touchStart;
+          if (Math.abs(movement) > 45) showSlide(current + (movement < 0 ? 1 : -1));
+          touchStart = null;
+        }, { passive: true });
+      })();
+    </script>
+  </body>
+</html>
