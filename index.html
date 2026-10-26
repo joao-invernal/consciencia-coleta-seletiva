@@ -267,6 +267,68 @@
       .video-frame video { aspect-ratio: 16 / 9; display: block; max-height: 73svh; object-fit: contain; width: 100%; }
       .video-caption { color: var(--teal); font: 500 .72rem/1.45 "DM Mono", monospace; letter-spacing: .06em; margin: 1rem 0 0; text-transform: uppercase; }
 
+      .recycling-intro {
+        --slide-bg: #f7f3e9;
+        align-items: center;
+        display: grid;
+        grid-template-columns: minmax(19rem, .85fr) minmax(30rem, 1.15fr);
+        gap: clamp(2rem, 6vw, 7rem);
+      }
+
+      .recycling-intro::after {
+        background: var(--mint);
+        border-radius: 50%;
+        bottom: -17rem;
+        height: 35rem;
+        right: -15rem;
+        width: 35rem;
+      }
+
+      .recycling-intro .slide-title { font-size: clamp(2rem, 3.35vw, 3.7rem); max-width: 12ch; }
+      .recycling-intro .body-copy { font-size: clamp(.73rem, .95vw, .9rem); line-height: 1.47; max-width: 36rem; }
+      .recycling-intro .body-copy p { margin-bottom: .55rem; }
+      .process-lead { color: var(--teal); font: 500 .68rem/1.4 "DM Mono", monospace; letter-spacing: .035em; margin-top: .8rem !important; }
+      .process-heading { color: var(--teal-dark); font-size: clamp(1rem, 1.4vw, 1.28rem); letter-spacing: -.04em; line-height: 1.15; margin: .35rem 0 .55rem; }
+
+      .recycling-image {
+        background: #e0f0e8;
+        box-shadow: 0 1.5rem 4rem rgba(18, 49, 47, .12);
+        margin: 0;
+        padding: clamp(.7rem, 1.5vw, 1.25rem);
+        position: relative;
+        z-index: 1;
+      }
+
+      .recycling-image img { display: block; height: auto; width: 100%; }
+      .recycling-image figcaption { color: var(--teal); font: 500 .68rem/1.45 "DM Mono", monospace; letter-spacing: .08em; margin-top: .75rem; text-transform: uppercase; }
+
+      .economy-slide {
+        --slide-bg: #e7f3ee;
+        align-items: center;
+        display: grid;
+        grid-template-columns: minmax(16rem, .8fr) minmax(31rem, 1.2fr);
+        gap: clamp(2rem, 6vw, 7rem);
+      }
+
+      .economy-slide::before {
+        border: 1px solid rgba(13, 98, 94, .14);
+        border-radius: 50%;
+        height: min(50vw, 43rem);
+        left: -20rem;
+        top: -20rem;
+        width: min(50vw, 43rem);
+      }
+
+      .economy-slide .slide-title { font-size: clamp(2.1rem, 3.7vw, 4.2rem); max-width: 9ch; }
+      .economy-slide .body-copy { font-size: clamp(.77rem, 1vw, .94rem); line-height: 1.58; }
+      .economy-slide .body-copy p { margin-bottom: .75rem; }
+
+      .economy-content { display: grid; gap: 1.05rem; position: relative; z-index: 1; }
+      .economy-image { background: #fffefa; box-shadow: 0 1rem 3rem rgba(18, 49, 47, .1); margin: 0; padding: .65rem; }
+      .economy-image img { display: block; height: auto; max-height: 25svh; object-fit: cover; width: 100%; }
+      .responsibility-note { border-left: 3px solid var(--sun); padding: .2rem 0 .2rem 1.1rem; }
+      .responsibility-note h3 { color: var(--teal-dark); font-size: clamp(1rem, 1.5vw, 1.35rem); letter-spacing: -.035em; margin: 0 0 .55rem; }
+
       .question, .thanks {
         align-items: center;
         display: flex;
@@ -319,13 +381,13 @@
       .nav-button svg { height: 1rem; width: 1rem; }
 
       .progress { background: rgba(248, 245, 237, .5); bottom: 0; height: 4px; left: 0; position: fixed; width: 100%; z-index: 4; }
-      .progress > span { background: var(--sun); display: block; height: 100%; transition: width .4s ease; width: 20%; }
+      .progress > span { background: var(--sun); display: block; height: 100%; transition: width .4s ease; width: 14.285%; }
       .pagination { bottom: clamp(1.85rem, 3vw, 2.8rem); color: rgba(248, 245, 237, .72); font: 500 .68rem/1 "DM Mono", monospace; left: clamp(1.3rem, 3.5vw, 4rem); letter-spacing: .08em; position: fixed; z-index: 4; }
       .slide:not(.cover):not(.question) ~ .pagination { color: var(--teal); }
 
       @media (max-width: 760px), (max-height: 650px) {
         .deck { min-height: 0; }
-        .cover, .content-slide, .video-slide { grid-template-columns: 1fr; gap: 1.5rem; overflow-y: auto; }
+        .cover, .content-slide, .video-slide, .recycling-intro, .economy-slide { grid-template-columns: 1fr; gap: 1.5rem; overflow-y: auto; }
         .cover { padding-bottom: 5.5rem; }
         .brand-mark { display: none; }
         .content-slide { align-content: center; padding-bottom: 5rem; }
@@ -338,6 +400,8 @@
         .color-card img { max-height: 29svh; }
         .video-slide { align-content: center; padding-bottom: 5.5rem; }
         .video-frame video { max-height: 42svh; }
+        .recycling-intro, .economy-slide { align-content: center; padding-bottom: 5.5rem; }
+        .economy-image img { max-height: 29svh; }
         .question h2 { font-size: clamp(4.2rem, 22vw, 7rem); }
       }
 
@@ -346,7 +410,7 @@
   </head>
   <body>
     <main class="deck" aria-label="Apresentação sobre consciência e coleta seletiva">
-      <section class="slide cover active" aria-roledescription="slide" aria-label="Slide 1 de 5: Capa">
+      <section class="slide cover active" aria-roledescription="slide" aria-label="Slide 1 de 7: Capa">
         <div>
           <p class="eyebrow">Tema · Meio Ambiente</p>
           <h1>Consciência <em>Coleta</em> Seletiva</h1>
@@ -355,7 +419,7 @@
         <div class="brand-mark"><img src="assets/logo-CS.png" alt="Logo CS" /></div>
       </section>
 
-      <section class="slide content-slide collector-slide" aria-roledescription="slide" aria-label="Slide 2 de 5: O que é coleta seletiva">
+      <section class="slide content-slide collector-slide" aria-roledescription="slide" aria-label="Slide 2 de 7: O que é coleta seletiva">
         <div class="collector-copy">
           <p class="eyebrow">Abertura · 01</p>
           <h2 class="slide-title">O que é coleta seletiva?</h2>
@@ -371,7 +435,7 @@
         </figure>
       </section>
 
-      <section class="slide video-slide" aria-roledescription="slide" aria-label="Slide 3 de 5: Vídeo explicativo">
+      <section class="slide video-slide" aria-roledescription="slide" aria-label="Slide 3 de 7: Vídeo explicativo">
         <div>
           <p class="eyebrow">Abertura · 02</p>
           <h2 class="slide-title">Vídeo explicativo</h2>
@@ -389,7 +453,48 @@
         </div>
       </section>
 
-      <section class="slide question" aria-roledescription="slide" aria-label="Slide 4 de 5: Dúvidas">
+      <section class="slide recycling-intro" aria-roledescription="slide" aria-label="Slide 4 de 7: Por que fazer a reciclagem">
+        <div>
+          <p class="eyebrow">Reciclagem · 01</p>
+          <h2 class="slide-title">Por que fazer a reciclagem?</h2>
+          <p class="slide-count">03 / TRANSFORMAR</p>
+          <div class="body-copy">
+            <p>Conforme o vídeo explica, podemos contribuir para o fornecimento contínuo de matéria-prima renovada. O antigo pode ser transformado para se tornar novo outra vez.</p>
+            <p class="process-lead">Continua com os trechos destacados para apresentar os processos específicos:</p>
+            <h3 class="process-heading">1. Coleta Seletiva Separada</h3>
+            <p>Os caminhões da coleta seletiva operam de forma separada dos caminhões de resíduos comuns, seguindo rotas específicas e horários diferenciados.</p>
+            <p>Porém, muitas vezes acontece a mistura de materiais inadequados nas próprias residências, antes mesmo da coleta. Quando resíduos orgânicos, sujos ou molhados são descartados junto com recicláveis, comprometem todo o processo.</p>
+            <p>Por isso, a conscientização sobre a separação correta é fundamental para que o sistema funcione de maneira eficiente e o material chegue em boas condições às cooperativas e indústrias recicladoras.</p>
+          </div>
+        </div>
+        <figure class="recycling-image">
+          <img src="assets/garota-pet.png" alt="Pessoa separando garrafas plásticas para reciclagem" />
+          <figcaption>Uma atitude cotidiana, um recurso que volta ao ciclo</figcaption>
+        </figure>
+      </section>
+
+      <section class="slide economy-slide" aria-roledescription="slide" aria-label="Slide 5 de 7: Reciclagem e responsabilidade compartilhada">
+        <div>
+          <p class="eyebrow">Reciclagem · 02</p>
+          <h2 class="slide-title">2. Recompensa Econômica com Reciclagem</h2>
+          <p class="slide-count">04 / AGIR</p>
+        </div>
+        <div class="economy-content">
+          <figure class="economy-image">
+            <img src="assets/planilha-ecologia.png" alt="Ilustração sobre economia e reciclagem" />
+          </figure>
+          <div class="body-copy">
+            <p><strong>Reciclar é economicamente vantajoso.</strong> Produzir a partir de resíduos reciclados consome menos energia, água e recursos do que usar matéria-prima virgem. No caso do alumínio, a reciclagem consome <strong>95% menos energia</strong> do que a produção a partir da bauxita.</p>
+            <p>Além de movimentar a economia local, gerar empregos e fortalecer cadeias produtivas sustentáveis, a prática ajuda cidades a reduzir custos com aterros sanitários.</p>
+          </div>
+          <div class="responsibility-note body-copy">
+            <h3>3. Reciclar é Responsabilidade Somente das Empresas?</h3>
+            <p>Não. Governos estruturam a coleta e a destinação; empresas investem em logística reversa e embalagens sustentáveis; cidadãos separam e entregam os recicláveis. A participação de todos fecha o ciclo, do consumo à destinação final.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide question" aria-roledescription="slide" aria-label="Slide 6 de 7: Dúvidas">
         <div>
           <p class="eyebrow">Momento de conversa</p>
           <h2><span>Dúvidas?</span></h2>
@@ -397,7 +502,7 @@
         </div>
       </section>
 
-      <section class="slide thanks" aria-roledescription="slide" aria-label="Slide 5 de 5: Agradecimento">
+      <section class="slide thanks" aria-roledescription="slide" aria-label="Slide 7 de 7: Agradecimento">
         <div>
           <p class="eyebrow">Consciência que transforma</p>
           <h2>Muito <em>obrigado.</em></h2>
@@ -414,7 +519,7 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" /></svg>
       </button>
     </nav>
-    <div class="pagination" aria-live="polite"><span id="current-slide">01</span> — 05</div>
+    <div class="pagination" aria-live="polite"><span id="current-slide">01</span> — <span id="total-slides">07</span></div>
     <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
 
     <script>
@@ -423,8 +528,12 @@
         const previous = document.querySelector('#previous');
         const next = document.querySelector('#next');
         const counter = document.querySelector('#current-slide');
+        const total = document.querySelector('#total-slides');
         const progress = document.querySelector('#progress-bar');
         let current = 0;
+
+        total.textContent = String(slides.length).padStart(2, '0');
+        progress.style.width = `${(1 / slides.length) * 100}%`;
 
         const showSlide = (target) => {
           const nextIndex = (target + slides.length) % slides.length;
