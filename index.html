@@ -329,6 +329,45 @@
       .responsibility-note { border-left: 3px solid var(--sun); padding: .2rem 0 .2rem 1.1rem; }
       .responsibility-note h3 { color: var(--teal-dark); font-size: clamp(1rem, 1.5vw, 1.35rem); letter-spacing: -.035em; margin: 0 0 .55rem; }
 
+      .disposal-intro {
+        --slide-bg: #f7f3e9;
+        align-items: center;
+        display: grid;
+        grid-template-columns: minmax(20rem, .96fr) minmax(29rem, 1.04fr);
+        gap: clamp(2rem, 5vw, 6rem);
+      }
+
+      .disposal-intro::before { background: var(--mint); border-radius: 50%; height: 33rem; left: -18rem; top: -18rem; width: 33rem; }
+      .disposal-intro .slide-title { font-size: clamp(2.2rem, 4vw, 4.5rem); max-width: 9ch; }
+      .disposal-subtitle { color: var(--teal); font: italic 600 clamp(1rem, 1.45vw, 1.25rem)/1.3 "Playfair Display", Georgia, serif; margin: .8rem 0 1.55rem; }
+      .disposal-copy { font-size: clamp(.72rem, .92vw, .88rem); line-height: 1.48; position: relative; z-index: 1; }
+      .disposal-copy h3 { color: var(--teal-dark); font-size: clamp(1rem, 1.45vw, 1.3rem); letter-spacing: -.03em; margin: 0 0 .6rem; }
+      .disposal-copy p { margin: 0 0 .65rem; }
+      .disposal-image { background: #fffefa; box-shadow: 0 1.4rem 3.5rem rgba(18, 49, 47, .12); margin: 0; padding: clamp(.7rem, 1.4vw, 1.2rem); position: relative; z-index: 1; }
+      .disposal-image img { display: block; height: auto; width: 100%; }
+      .disposal-image figcaption { color: var(--teal); font: 500 .68rem/1.4 "DM Mono", monospace; letter-spacing: .07em; margin-top: .7rem; text-transform: uppercase; }
+
+      .disposal-guide {
+        --slide-bg: #e7f3ee;
+        align-items: center;
+        display: grid;
+        grid-template-columns: minmax(15rem, .52fr) minmax(36rem, 1.48fr);
+        gap: clamp(2rem, 5vw, 6rem);
+      }
+
+      .disposal-guide::after { border: 1px solid rgba(13, 98, 94, .14); border-radius: 50%; bottom: -19rem; height: 38rem; right: -14rem; width: 38rem; }
+      .disposal-guide .slide-title { font-size: clamp(2.1rem, 3.7vw, 4.2rem); max-width: 8ch; }
+      .guide-content { display: grid; gap: .9rem; position: relative; z-index: 1; }
+      .guide-intro { font-size: clamp(.76rem, .96vw, .9rem); line-height: 1.5; margin: 0; }
+      .guide-steps { display: grid; gap: .8rem; grid-template-columns: 1fr 1fr; }
+      .guide-step { background: #fffefa; border-top: 3px solid var(--teal); box-shadow: 0 .75rem 2rem rgba(18, 49, 47, .08); padding: clamp(.75rem, 1.25vw, 1.15rem); }
+      .guide-step h3 { color: var(--teal-dark); font-size: clamp(.88rem, 1.18vw, 1.08rem); letter-spacing: -.03em; line-height: 1.2; margin: 0 0 .55rem; }
+      .guide-step p, .guide-step li, .guide-summary { font-size: clamp(.66rem, .8vw, .78rem); line-height: 1.4; }
+      .guide-step p { margin: 0 0 .5rem; }
+      .guide-step ul { margin: .4rem 0 .55rem; padding-left: 1rem; }
+      .guide-step li + li { margin-top: .25rem; }
+      .guide-summary { border-left: 3px solid var(--sun); margin: 0; padding-left: .9rem; }
+
       .question, .thanks {
         align-items: center;
         display: flex;
@@ -381,13 +420,13 @@
       .nav-button svg { height: 1rem; width: 1rem; }
 
       .progress { background: rgba(248, 245, 237, .5); bottom: 0; height: 4px; left: 0; position: fixed; width: 100%; z-index: 4; }
-      .progress > span { background: var(--sun); display: block; height: 100%; transition: width .4s ease; width: 14.285%; }
+      .progress > span { background: var(--sun); display: block; height: 100%; transition: width .4s ease; width: 11.111%; }
       .pagination { bottom: clamp(1.85rem, 3vw, 2.8rem); color: rgba(248, 245, 237, .72); font: 500 .68rem/1 "DM Mono", monospace; left: clamp(1.3rem, 3.5vw, 4rem); letter-spacing: .08em; position: fixed; z-index: 4; }
       .slide:not(.cover):not(.question) ~ .pagination { color: var(--teal); }
 
       @media (max-width: 760px), (max-height: 650px) {
         .deck { min-height: 0; }
-        .cover, .content-slide, .video-slide, .recycling-intro, .economy-slide { grid-template-columns: 1fr; gap: 1.5rem; overflow-y: auto; }
+        .cover, .content-slide, .video-slide, .recycling-intro, .economy-slide, .disposal-intro, .disposal-guide { grid-template-columns: 1fr; gap: 1.5rem; overflow-y: auto; }
         .cover { padding-bottom: 5.5rem; }
         .brand-mark { display: none; }
         .content-slide { align-content: center; padding-bottom: 5rem; }
@@ -402,6 +441,8 @@
         .video-frame video { max-height: 42svh; }
         .recycling-intro, .economy-slide { align-content: center; padding-bottom: 5.5rem; }
         .economy-image img { max-height: 29svh; }
+        .disposal-intro, .disposal-guide { align-content: center; padding-bottom: 5.5rem; }
+        .guide-steps { grid-template-columns: 1fr; }
         .question h2 { font-size: clamp(4.2rem, 22vw, 7rem); }
       }
 
@@ -410,7 +451,7 @@
   </head>
   <body>
     <main class="deck" aria-label="Apresentação sobre consciência e coleta seletiva">
-      <section class="slide cover active" aria-roledescription="slide" aria-label="Slide 1 de 7: Capa">
+      <section class="slide cover active" aria-roledescription="slide" aria-label="Slide 1 de 9: Capa">
         <div>
           <p class="eyebrow">Tema · Meio Ambiente</p>
           <h1>Consciência <em>Coleta</em> Seletiva</h1>
@@ -419,7 +460,7 @@
         <div class="brand-mark"><img src="assets/logo-CS.png" alt="Logo CS" /></div>
       </section>
 
-      <section class="slide content-slide collector-slide" aria-roledescription="slide" aria-label="Slide 2 de 7: O que é coleta seletiva">
+      <section class="slide content-slide collector-slide" aria-roledescription="slide" aria-label="Slide 2 de 9: O que é coleta seletiva">
         <div class="collector-copy">
           <p class="eyebrow">Abertura · 01</p>
           <h2 class="slide-title">O que é coleta seletiva?</h2>
@@ -435,7 +476,7 @@
         </figure>
       </section>
 
-      <section class="slide video-slide" aria-roledescription="slide" aria-label="Slide 3 de 7: Vídeo explicativo">
+      <section class="slide video-slide" aria-roledescription="slide" aria-label="Slide 3 de 9: Vídeo explicativo">
         <div>
           <p class="eyebrow">Abertura · 02</p>
           <h2 class="slide-title">Vídeo explicativo</h2>
@@ -453,7 +494,7 @@
         </div>
       </section>
 
-      <section class="slide recycling-intro" aria-roledescription="slide" aria-label="Slide 4 de 7: Por que fazer a reciclagem">
+      <section class="slide recycling-intro" aria-roledescription="slide" aria-label="Slide 4 de 9: Por que fazer a reciclagem">
         <div>
           <p class="eyebrow">Reciclagem · 01</p>
           <h2 class="slide-title">Por que fazer a reciclagem?</h2>
@@ -473,7 +514,7 @@
         </figure>
       </section>
 
-      <section class="slide economy-slide" aria-roledescription="slide" aria-label="Slide 5 de 7: Reciclagem e responsabilidade compartilhada">
+      <section class="slide economy-slide" aria-roledescription="slide" aria-label="Slide 5 de 9: Reciclagem e responsabilidade compartilhada">
         <div>
           <p class="eyebrow">Reciclagem · 02</p>
           <h2 class="slide-title">2. Recompensa Econômica com Reciclagem</h2>
@@ -494,7 +535,59 @@
         </div>
       </section>
 
-      <section class="slide question" aria-roledescription="slide" aria-label="Slide 6 de 7: Dúvidas">
+      <section class="slide disposal-intro" aria-roledescription="slide" aria-label="Slide 6 de 9: Como separar o descarte">
+        <div class="disposal-copy">
+          <p class="eyebrow">Descarte · 01</p>
+          <h2 class="slide-title">Como separar o descarte?</h2>
+          <p class="disposal-subtitle">Um novo hábito saudável</p>
+          <h3>Separar o lixo é complicado?</h3>
+          <p>Essa é uma grande questão entre os mitos e verdades sobre reciclagem. Muitas pessoas ainda acreditam que separar o lixo demanda tempo ou conhecimento técnico, mas isso não é verdade.</p>
+          <p>Na prática, a separação correta dos resíduos é simples e pode ser incorporada à rotina de qualquer casa, condomínio ou empresa. O segredo está em compreender a diferença entre o que é reciclável e o que não é, e manter o hábito de destinar cada material ao local adequado.</p>
+          <p>A separação correta evita que resíduos recicláveis acabem sendo descartados em aterros e melhora significativamente o desempenho da coleta seletiva.</p>
+          <p>Além disso, facilita o trabalho das cooperativas de triagem e reduz custos operacionais para o município.</p>
+          <p class="slide-count">05 / SEPARAR</p>
+        </div>
+        <figure class="disposal-image">
+          <img src="assets/garoto-com-pets.jpg" alt="Pessoa separando garrafas plásticas para o descarte correto" />
+          <figcaption>Separar é simples: cada material no local adequado</figcaption>
+        </figure>
+      </section>
+
+      <section class="slide disposal-guide" aria-roledescription="slide" aria-label="Slide 7 de 9: Como separar o lixo para reciclagem">
+        <div>
+          <p class="eyebrow">Descarte · 02</p>
+          <h2 class="slide-title">Como separar o lixo para reciclagem</h2>
+          <p class="slide-count">06 / PREPARAR</p>
+        </div>
+        <div class="guide-content">
+          <p class="guide-intro">Se você ainda possui dúvidas sobre a melhor forma de realizar a separação dos lixos para reciclagem, siga os seguintes passos:</p>
+          <div class="guide-steps">
+            <article class="guide-step">
+              <h3>Passo 1: classifique os resíduos corretamente</h3>
+              <p>O primeiro passo é dividir o lixo em dois grandes grupos:</p>
+              <ul>
+                <li>Resíduos recicláveis (secos): papéis, plásticos, vidros e metais limpos e secos.</li>
+                <li>Resíduos orgânicos e rejeitos (úmidos): restos de alimentos, papéis engordurados, fraldas, absorventes e itens de higiene.</li>
+              </ul>
+              <p>Essa separação inicial é essencial para garantir que os materiais recicláveis não sejam contaminados e possam seguir para triagem e reaproveitamento.</p>
+            </article>
+            <article class="guide-step">
+              <h3>Passo 2: prepare o material para a coleta</h3>
+              <p>Alguns cuidados simples fazem toda a diferença no resultado da reciclagem:</p>
+              <ul>
+                <li>Lave e seque embalagens antes de descartar, especialmente as de alimentos e bebidas.</li>
+                <li>Retire tampas, rótulos e partes plásticas sempre que possível.</li>
+                <li>Evite misturar recicláveis com resíduos orgânicos.</li>
+                <li>Armazene o material separado até o dia e horário corretos da coleta seletiva em sua cidade.</li>
+                <li>Para objetos maiores, como eletrodomésticos, móveis e ferragens, leve até um ecoponto ou ponto de entrega voluntária (PEV).</li>
+              </ul>
+            </article>
+          </div>
+          <p class="guide-summary">Essas medidas aumentam a eficiência da coleta, reduzem o desperdício e garantem que o material chegue em boas condições às cooperativas e indústrias recicladoras. Com organização e consciência ambiental, separar o lixo se torna uma rotina simples e essencial para o cuidado com o meio ambiente.</p>
+        </div>
+      </section>
+
+      <section class="slide question" aria-roledescription="slide" aria-label="Slide 8 de 9: Dúvidas">
         <div>
           <p class="eyebrow">Momento de conversa</p>
           <h2><span>Dúvidas?</span></h2>
@@ -502,7 +595,7 @@
         </div>
       </section>
 
-      <section class="slide thanks" aria-roledescription="slide" aria-label="Slide 7 de 7: Agradecimento">
+      <section class="slide thanks" aria-roledescription="slide" aria-label="Slide 9 de 9: Agradecimento">
         <div>
           <p class="eyebrow">Consciência que transforma</p>
           <h2>Muito <em>obrigado.</em></h2>
@@ -519,7 +612,7 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" /></svg>
       </button>
     </nav>
-    <div class="pagination" aria-live="polite"><span id="current-slide">01</span> — <span id="total-slides">07</span></div>
+    <div class="pagination" aria-live="polite"><span id="current-slide">01</span> — <span id="total-slides">09</span></div>
     <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
 
     <script>
