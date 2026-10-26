@@ -368,6 +368,21 @@
       .guide-step li + li { margin-top: .25rem; }
       .guide-summary { border-left: 3px solid var(--sun); margin: 0; padding-left: .9rem; }
 
+      .schedule-slide {
+        --slide-bg: #f7f3e9;
+        align-items: center;
+        display: grid;
+        grid-template-columns: minmax(15rem, .52fr) minmax(32rem, 1.48fr);
+        gap: clamp(2rem, 6vw, 7rem);
+      }
+
+      .schedule-slide::before { background: var(--mint); border-radius: 50%; height: 37rem; left: -22rem; top: -20rem; width: 37rem; }
+      .schedule-slide .slide-title { font-size: clamp(2.35rem, 4.25vw, 5rem); max-width: 8ch; }
+      .schedule-slide .body-copy { font-size: clamp(.84rem, 1.1vw, 1rem); line-height: 1.6; max-width: 21rem; }
+      .schedule-image { background: #fffefa; box-shadow: 0 1.5rem 4rem rgba(18, 49, 47, .13); margin: 0; padding: clamp(.7rem, 1.5vw, 1.3rem); position: relative; z-index: 1; }
+      .schedule-image img { display: block; height: auto; max-height: 68svh; object-fit: contain; width: 100%; }
+      .schedule-image figcaption { color: var(--teal); font: 500 .68rem/1.4 "DM Mono", monospace; letter-spacing: .08em; margin-top: .7rem; text-transform: uppercase; }
+
       .question, .thanks {
         align-items: center;
         display: flex;
@@ -420,13 +435,13 @@
       .nav-button svg { height: 1rem; width: 1rem; }
 
       .progress { background: rgba(248, 245, 237, .5); bottom: 0; height: 4px; left: 0; position: fixed; width: 100%; z-index: 4; }
-      .progress > span { background: var(--sun); display: block; height: 100%; transition: width .4s ease; width: 11.111%; }
+      .progress > span { background: var(--sun); display: block; height: 100%; transition: width .4s ease; width: 10%; }
       .pagination { bottom: clamp(1.85rem, 3vw, 2.8rem); color: rgba(248, 245, 237, .72); font: 500 .68rem/1 "DM Mono", monospace; left: clamp(1.3rem, 3.5vw, 4rem); letter-spacing: .08em; position: fixed; z-index: 4; }
       .slide:not(.cover):not(.question) ~ .pagination { color: var(--teal); }
 
       @media (max-width: 760px), (max-height: 650px) {
         .deck { min-height: 0; }
-        .cover, .content-slide, .video-slide, .recycling-intro, .economy-slide, .disposal-intro, .disposal-guide { grid-template-columns: 1fr; gap: 1.5rem; overflow-y: auto; }
+        .cover, .content-slide, .video-slide, .recycling-intro, .economy-slide, .disposal-intro, .disposal-guide, .schedule-slide { grid-template-columns: 1fr; gap: 1.5rem; overflow-y: auto; }
         .cover { padding-bottom: 5.5rem; }
         .brand-mark { display: none; }
         .content-slide { align-content: center; padding-bottom: 5rem; }
@@ -443,6 +458,8 @@
         .economy-image img { max-height: 29svh; }
         .disposal-intro, .disposal-guide { align-content: center; padding-bottom: 5.5rem; }
         .guide-steps { grid-template-columns: 1fr; }
+        .schedule-slide { align-content: center; padding-bottom: 5.5rem; }
+        .schedule-image img { max-height: 48svh; }
         .question h2 { font-size: clamp(4.2rem, 22vw, 7rem); }
       }
 
@@ -451,7 +468,7 @@
   </head>
   <body>
     <main class="deck" aria-label="Apresentação sobre consciência e coleta seletiva">
-      <section class="slide cover active" aria-roledescription="slide" aria-label="Slide 1 de 9: Capa">
+      <section class="slide cover active" aria-roledescription="slide" aria-label="Slide 1 de 10: Capa">
         <div>
           <p class="eyebrow">Tema · Meio Ambiente</p>
           <h1>Consciência <em>Coleta</em> Seletiva</h1>
@@ -460,7 +477,7 @@
         <div class="brand-mark"><img src="assets/logo-CS.png" alt="Logo CS" /></div>
       </section>
 
-      <section class="slide content-slide collector-slide" aria-roledescription="slide" aria-label="Slide 2 de 9: O que é coleta seletiva">
+      <section class="slide content-slide collector-slide" aria-roledescription="slide" aria-label="Slide 2 de 10: O que é coleta seletiva">
         <div class="collector-copy">
           <p class="eyebrow">Abertura · 01</p>
           <h2 class="slide-title">O que é coleta seletiva?</h2>
@@ -476,7 +493,7 @@
         </figure>
       </section>
 
-      <section class="slide video-slide" aria-roledescription="slide" aria-label="Slide 3 de 9: Vídeo explicativo">
+      <section class="slide video-slide" aria-roledescription="slide" aria-label="Slide 3 de 10: Vídeo explicativo">
         <div>
           <p class="eyebrow">Abertura · 02</p>
           <h2 class="slide-title">Vídeo explicativo</h2>
@@ -494,7 +511,7 @@
         </div>
       </section>
 
-      <section class="slide recycling-intro" aria-roledescription="slide" aria-label="Slide 4 de 9: Por que fazer a reciclagem">
+      <section class="slide recycling-intro" aria-roledescription="slide" aria-label="Slide 4 de 10: Por que fazer a reciclagem">
         <div>
           <p class="eyebrow">Reciclagem · 01</p>
           <h2 class="slide-title">Por que fazer a reciclagem?</h2>
@@ -514,7 +531,7 @@
         </figure>
       </section>
 
-      <section class="slide economy-slide" aria-roledescription="slide" aria-label="Slide 5 de 9: Reciclagem e responsabilidade compartilhada">
+      <section class="slide economy-slide" aria-roledescription="slide" aria-label="Slide 5 de 10: Reciclagem e responsabilidade compartilhada">
         <div>
           <p class="eyebrow">Reciclagem · 02</p>
           <h2 class="slide-title">2. Recompensa Econômica com Reciclagem</h2>
@@ -535,7 +552,7 @@
         </div>
       </section>
 
-      <section class="slide disposal-intro" aria-roledescription="slide" aria-label="Slide 6 de 9: Como separar o descarte">
+      <section class="slide disposal-intro" aria-roledescription="slide" aria-label="Slide 6 de 10: Como separar o descarte">
         <div class="disposal-copy">
           <p class="eyebrow">Descarte · 01</p>
           <h2 class="slide-title">Como separar o descarte?</h2>
@@ -553,7 +570,7 @@
         </figure>
       </section>
 
-      <section class="slide disposal-guide" aria-roledescription="slide" aria-label="Slide 7 de 9: Como separar o lixo para reciclagem">
+      <section class="slide disposal-guide" aria-roledescription="slide" aria-label="Slide 7 de 10: Como separar o lixo para reciclagem">
         <div>
           <p class="eyebrow">Descarte · 02</p>
           <h2 class="slide-title">Como separar o lixo para reciclagem</h2>
@@ -587,7 +604,19 @@
         </div>
       </section>
 
-      <section class="slide question" aria-roledescription="slide" aria-label="Slide 8 de 9: Dúvidas">
+      <section class="slide schedule-slide" aria-roledescription="slide" aria-label="Slide 8 de 10: Período para Coleta Local">
+        <div>
+          <p class="eyebrow">Organização local</p>
+          <h2 class="slide-title">Período para Coleta Local</h2>
+          <p class="slide-count">07 / PLANEJAR</p>
+        </div>
+        <figure class="schedule-image">
+          <img src="assets/cronograma.png" alt="Cronograma do período para coleta local" />
+          <figcaption>Cronograma da coleta local</figcaption>
+        </figure>
+      </section>
+
+      <section class="slide question" aria-roledescription="slide" aria-label="Slide 9 de 10: Dúvidas">
         <div>
           <p class="eyebrow">Momento de conversa</p>
           <h2><span>Dúvidas?</span></h2>
@@ -595,7 +624,7 @@
         </div>
       </section>
 
-      <section class="slide thanks" aria-roledescription="slide" aria-label="Slide 9 de 9: Agradecimento">
+      <section class="slide thanks" aria-roledescription="slide" aria-label="Slide 10 de 10: Agradecimento">
         <div>
           <p class="eyebrow">Consciência que transforma</p>
           <h2>Muito <em>obrigado.</em></h2>
@@ -612,7 +641,7 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" /></svg>
       </button>
     </nav>
-    <div class="pagination" aria-live="polite"><span id="current-slide">01</span> — <span id="total-slides">09</span></div>
+    <div class="pagination" aria-live="polite"><span id="current-slide">01</span> — <span id="total-slides">10</span></div>
     <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
 
     <script>
